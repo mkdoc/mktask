@@ -1,7 +1,7 @@
 {
   "name": "mktask",
   "version": "1.0.4",
-  "description": "Streaming task runner",
+  "description": "Task runner",
   "author": "muji",
   "license": "MIT",
   "repository": {
