@@ -24,6 +24,11 @@ function task() {
   if(!tasks) {
     tasks = mk();
   }
+
+  if(!arguments.length) {
+    return tasks; 
+  }
+
   return tasks.task.apply(tasks, arguments);
 }
 
