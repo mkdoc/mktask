@@ -34,6 +34,18 @@ task()
 
 Adds task function(s) to the list of known tasks.
 
+### run
+
+```javascript
+run([opts])
+```
+
+Gets a task runner for this collection of tasks.
+
+Returns a task Runner.
+
+* `opts` processing options.
+
 ### mk
 
 ```javascript

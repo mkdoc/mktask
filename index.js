@@ -63,10 +63,17 @@ function task() {
 
   gather(args);
   this.tasks.push(map);
-
   return map;
 }
 
+/**
+ *  Gets a task runner for this collection of tasks.
+ *
+ *  @function run
+ *  @param [opts] processing options.
+ *
+ *  @returns a task Runner.
+ */
 function run(opts) {
   opts = opts || {};
   opts.tasks = this.tasks;
