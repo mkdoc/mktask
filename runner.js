@@ -1,3 +1,7 @@
+var ast = require('mkast')
+  , out = require('mkout')
+  , MAIN = 'main';
+
 /**
  *  Get a task runner.
  *
@@ -19,8 +23,13 @@ function runner(opts) {
  *  @option {Object} task collection of tasks.
  */
 function Runner(task) {
+  this.task = task;
+
   this.tasks = task.tasks;
   this.scope = task.scope || {};
+
+  this.scope.ast = this.scope.ast || ast;
+  this.scope.out = this.scope.out || out;
 }
 
 /**
@@ -164,9 +173,50 @@ function exec(id, cb) {
   return task;
 }
 
+/**
+ *  Execute a list of tasks to by string identifiers.
+ *
+ *  @function each
+ *  @member Runner
+ *
+ *  @param {Array} [names] list of task names.
+ *  @param {Function} cb callback function.
+ */
+function each(names, cb) {
+  if(names instanceof Function) {
+    cb = names;
+    names = null;
+  }
+
+  if(!names) {
+    names = this.tasks.map(function(task) {
+      return task.id;
+    }) 
+  }
+
+  var scope = this;
+  names = names.slice();
+
+  function next(err) {
+    if(err) {
+      return cb(err); 
+    }
+    var id = names.shift(); 
+    if(!id) {
+      return cb(); 
+    }
+    scope.exec(id, next);
+  }
+
+  next();
+}
+
 Runner.prototype.get = get;
 Runner.prototype.exec = exec;
 Runner.prototype.series = series;
 Runner.prototype.parallel = parallel;
+Runner.prototype.each = each;
+
+Runner.prototype.MAIN = MAIN;
 
 module.exports = runner;
