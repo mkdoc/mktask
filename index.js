@@ -1,14 +1,30 @@
-var runner = require('./runner');
+var runner = require('./runner')
+  // default task collection for static access
+  , tasks;
 
 /**
  *  Creates a task collection.
  *
- *  @module {function} task
+ *  @module {function} mk
  *
  *  @returns a Task.
  */
-function task(opts) {
+function mk(opts) {
   return new Task(opts);
+}
+
+/**
+ *  Adds a task to the default task collection.
+ *
+ *  @static {function} task
+ *
+ *  @returns a Task.
+ */
+function task() {
+  if(!tasks) {
+    tasks = mk();
+  }
+  return tasks.task.apply(tasks, arguments);
 }
 
 /**
@@ -96,4 +112,6 @@ function run(opts) {
 Task.prototype.task = add;
 Task.prototype.run = run;
 
-module.exports = task;
+mk.task = task;
+
+module.exports = mk;

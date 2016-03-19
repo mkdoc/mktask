@@ -1,6 +1,8 @@
-var mk = require('../../index')();
+var mk = require('../../index');
 
-function api() {}
+function api(cb) {
+  cb();
+}
 
 mk.task([api], function readme(cb) {
   cb();
