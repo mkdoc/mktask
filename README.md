@@ -34,6 +34,45 @@ task()
 
 Adds task function(s) to the list of known tasks.
 
+### Runner
+
+```javascript
+new Runner(opts)
+```
+
+Execute task functions.
+
+* `opts` Object processing options.
+
+#### Options
+
+* `list` Array of tasks.
+* `scope` Object task execution scope.
+
+### get
+
+```javascript
+get(id)
+```
+
+Get a task by name identifier.
+
+Returns a task or undefined.
+
+* `id` Function|String task identifier.
+
+### get
+
+```javascript
+get(id)
+```
+
+Execute a task by name identifier.
+
+Returns a task or undefined.
+
+* `id` Function|String task identifier.
+
 ## License
 
 MIT
