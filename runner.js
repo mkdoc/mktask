@@ -62,6 +62,7 @@ function get(id) {
  */
 function series(list, cb) {
   var items = list.slice(0)
+    , runner = this
     , scope = this.scope
     , stream;
 
@@ -76,6 +77,8 @@ function series(list, cb) {
     }
 
     var res = item.call(scope, next);
+
+    // piping between stream return values
     if(res && res.pipe instanceof Function) {
       if(stream) {
         stream.pipe(res); 
@@ -87,6 +90,9 @@ function series(list, cb) {
       }else{
         res.once('finish', next);
       }
+    // deferring to list of other tasks to execute
+    }else if(Array.isArray(res)) {
+      runner.each(res, next); 
     }
   }
   next();
@@ -205,6 +211,9 @@ function each(names, cb) {
       return cb(err); 
     }
     var id = names.shift(); 
+    if(id instanceof Function) {
+      id = id.name; 
+    }
     if(!id) {
       return cb(); 
     }
