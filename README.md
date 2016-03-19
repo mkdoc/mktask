@@ -6,7 +6,7 @@
 
 > Run build tasks
 
-Loads a `mkdoc.js` file and executes task(s) in the file.
+Runs named task functions that return streams.
 
 ## Install
 
@@ -17,6 +17,22 @@ npm i mktask --save
 For the command line interface install [mkdoc][] globally (`npm i -g mkdoc`).
 
 ## API
+
+### Task
+
+```javascript
+Task()
+```
+
+Task runner entry point.
+
+### task
+
+```javascript
+task()
+```
+
+Adds task function(s) to the list of known tasks.
 
 ## License
 

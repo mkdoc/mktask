@@ -4,7 +4,7 @@
 
 > Run build tasks
 
-Loads a `mkdoc.js` file and executes task(s) in the file.
+Runs named task functions that return streams.
 
 <? @include {=readme} install.md ?>
 
