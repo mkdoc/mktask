@@ -13,6 +13,7 @@ function Task() {
  *  Adds task function(s) to the list of known tasks.
  *
  *  @function task
+ *  @member Task
  */
 function task() {
   var args = Array.prototype.slice.call(arguments)
@@ -70,6 +71,7 @@ function task() {
  *  Gets a task runner for this collection of tasks.
  *
  *  @function run
+ *  @member Task
  *  @param [opts] processing options.
  *
  *  @returns a task Runner.

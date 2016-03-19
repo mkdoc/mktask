@@ -26,18 +26,18 @@ Task()
 
 Encapsulates a collection of named task functions.
 
-### task
+### .task
 
 ```javascript
-task()
+Task.prototype.task()
 ```
 
 Adds task function(s) to the list of known tasks.
 
-### run
+### .run
 
 ```javascript
-run([opts])
+Task.prototype.run([opts])
 ```
 
 Gets a task runner for this collection of tasks.
