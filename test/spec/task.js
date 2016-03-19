@@ -11,6 +11,7 @@ describe('mktask:', function() {
     expect(res.deps).to.eql([]);
     expect(res.tasks).to.be.an('array')
       .to.have.length(1);
+    expect(res.name).to.eql(readme.name);
     expect(res.tasks[0].task).to.equal(readme);
     expect(res.tasks[0].name).to.equal(readme.name);
     expect(res.tasks[0].arity).to.equal(readme.length);
@@ -26,9 +27,46 @@ describe('mktask:', function() {
     expect(res.deps).to.eql([api]);
     expect(res.tasks).to.be.an('array')
       .to.have.length(1);
+    expect(res.name).to.eql(readme.name);
     expect(res.tasks[0].task).to.equal(readme);
     expect(res.tasks[0].name).to.equal(readme.name);
     expect(res.tasks[0].arity).to.equal(readme.length);
+    done();
+  });
+
+  it('should create named task', function(done) {
+    var mk = mktask()
+      , name = 'docs'
+      , readme = function readme(){}
+      , res = mk.task(name, readme);
+    expect(res).to.be.an('object');
+    expect(res.deps).to.eql([]);
+    expect(res.tasks).to.be.an('array')
+      .to.have.length(1);
+    expect(res.name).to.eql(name);
+    done();
+  });
+
+  it('should create named task w/ dependencies', function(done) {
+    var mk = mktask()
+      , name = 'docs'
+      , api = function api(){}
+      , readme = function readme(){}
+      , res = mk.task([api], name, readme);
+    expect(res).to.be.an('object');
+    expect(res.deps).to.eql([api]);
+    expect(res.tasks).to.be.an('array')
+      .to.have.length(1);
+    expect(res.name).to.eql(name);
+    done();
+  });
+
+  it('should error with no task functions', function(done) {
+    var mk = mktask();
+    function fn() {
+      mk.task('foo');
+    }
+    expect(fn).throws(TypeError);
     done();
   });
 

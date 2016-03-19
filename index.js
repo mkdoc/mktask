@@ -5,7 +5,9 @@ var tasks = [];
  *
  *  @function Task
  */
-function Task() {}
+function Task() {
+
+}
 
 /**
  *  Adds task function(s) to the list of known tasks.
@@ -16,7 +18,7 @@ function task() {
   var args = Array.prototype.slice.call(arguments)
     , i
     , func
-    , map = {deps: [], tasks: []};
+    , map = {deps: [], tasks: [], name: null};
 
   function validate(func) {
     if(!(func instanceof Function)) {
@@ -33,23 +35,34 @@ function task() {
     map.deps.forEach(function(func) {
       validate(func);
     })
+    if(typeof args[0] === 'string') {
+      map.name = args.shift(); 
+    }
+  }else if(typeof args[0] === 'string') {
+    map.name = args.shift(); 
+  }
+
+  if(!args.length) {
+    throw new TypeError('task functions expected'); 
   }
 
   function gather(args) {
     for(i = 0;i < args.length;i++) {
       func = args[i];
       validate(func);
+
+      // name is taken from first task function
+      if(!map.name) {
+        map.name = func.name; 
+      }
+
       map.tasks.push(
         {task: func, name: func.name, arity: func.length});
     }
   }
 
   gather(args);
-
   tasks.push(map);
-
-  //console.dir('task map');
-  console.dir(tasks, {depth: null, colors: true});
 
   return map;
 }
