@@ -114,10 +114,12 @@ function parallel(list, concurrent, cb) {
   concurrent = concurrent || items.length;
 
   function run() {
+    if(complete) {
+      items = items.slice(concurrent);
+    }
     for(var i = 0;i < concurrent;i++) {
       items[i].call(scope, next);
     }
-    items = items.slice(concurrent);
   }
 
   function next(err) {

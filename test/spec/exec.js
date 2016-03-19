@@ -3,23 +3,6 @@ var expect = require('chai').expect
 
 describe('mktask:', function() {
 
-  it('should get task from runner', function(done) {
-    var mk = mktask()
-      , readme = function readme(){}
-      , res = mk.task(readme)
-      , runner = mk.run();
-
-    expect(res).to.be.an('object');
-    expect(runner).to.be.an('object');
-
-    expect(runner.get(readme)).to.eql(res);
-    expect(runner.get(readme.name)).to.eql(res);
-
-    expect(runner.get('foo')).to.eql(undefined);
-
-    done();
-  });
-
   it('should return task from runner (exec)', function(done) {
     var mk = mktask()
       , readme = function readme(){}
@@ -83,43 +66,6 @@ describe('mktask:', function() {
     var runner = mk.run();
     runner.exec(api, function() {
       expect(called).to.eql(2); 
-      done();
-    });
-  });
-
-  it('should exec task functions dependencies in parallel', function(done) {
-    var mk = mktask()
-      , called = 0
-      , docsCalled
-      , apiCalled
-      , readmeCalled;
-
-    function docs(cb) {
-      called++;
-      docsCalled = 1;
-      cb();
-    }
-
-    function api(cb) {
-      called++;
-      apiCalled = 1;
-      cb();
-    }
-    
-    function readme(cb) {
-      called++;
-      readmeCalled = 1;
-      cb();
-    }
-      
-    mk.task([docs, api], readme);
-
-    var runner = mk.run();
-    runner.exec(readme, function() {
-      expect(called).to.eql(3); 
-      expect(docsCalled).to.eql(1); 
-      expect(apiCalled).to.eql(1); 
-      expect(readmeCalled).to.eql(1); 
       done();
     });
   });

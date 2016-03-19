@@ -18,13 +18,23 @@ For the command line interface install [mkdoc][] globally (`npm i -g mkdoc`).
 
 ## API
 
-### task
+### mk
 
 ```javascript
-task()
+mk()
 ```
 
 Creates a task collection.
+
+Returns a Task.
+
+### #task
+
+```javascript
+static task()
+```
+
+Adds a task to the default task collection.
 
 Returns a Task.
 
@@ -47,14 +57,37 @@ Adds task function(s) to the list of known tasks.
 ### .run
 
 ```javascript
-Task.prototype.run([opts])
+Task.prototype.run()
 ```
 
 Gets a task runner for this collection of tasks.
 
 Returns a task Runner.
 
-* `opts` processing options.
+### #src
+
+```javascript
+static src()
+```
+
+Parses a markdown string into a stream.
+
+Returns the output stream.
+
+### #dest
+
+```javascript
+static dest([file])
+```
+
+Get a destination output stream.
+
+If the file option is not given a destination stream that prints to
+stdout is returned.
+
+Returns an output stream.
+
+* `file` String path to the output file.
 
 ### runner
 
@@ -80,8 +113,7 @@ Execute task functions.
 
 #### Options
 
-* `list` Array of tasks.
-* `scope` Object task execution scope.
+* `task` Object collection of tasks.
 
 ### .get
 
@@ -95,6 +127,29 @@ Returns a task or undefined.
 
 * `id` Function|String task identifier.
 
+### .series
+
+```javascript
+Runner.prototype.series(list, cb)
+```
+
+Execute task functions in series.
+
+* `list` Array of task functions.
+* `cb` Function callback function.
+
+### .parallel
+
+```javascript
+Runner.prototype.parallel(list[, concurrent], cb)
+```
+
+Execute task functions in parallel.
+
+* `list` Array of task functions.
+* `concurrent` Number number of concurrent calls.
+* `cb` Function callback function.
+
 ### .exec
 
 ```javascript
@@ -103,9 +158,22 @@ Runner.prototype.exec(id, cb)
 
 Execute a task by name identifier.
 
+Dependencies are run in parallel before task execution.
+
 Returns a task or undefined.
 
 * `id` Function|String task identifier.
+* `cb` Function callback function.
+
+### .each
+
+```javascript
+Runner.prototype.each([names], cb)
+```
+
+Execute a list of tasks to by string identifiers.
+
+* `names` Array list of task names.
 * `cb` Function callback function.
 
 ## License

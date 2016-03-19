@@ -79,7 +79,7 @@ function add() {
   }
 
   if(!args.length) {
-    throw new TypeError('task function(s) expected'); 
+    throw new TypeError('not enough arguments for task()'); 
   }
 
   function gather(args) {
@@ -126,10 +126,13 @@ Task.prototype.run = run;
 mk.src = ast.src;
 
 /**
- *  Get a file write output stream.
+ *  Get a destination output stream.
+ *
+ *  If the file option is not given a destination stream that prints to 
+ *  stdout is returned.
  *
  *  @static {function} dest
- *  @param {String} file path to the output file.
+ *  @param {String} [file] path to the output file.
  *  
  *  @returns an output stream.
  */
