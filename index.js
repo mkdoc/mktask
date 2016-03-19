@@ -1,6 +1,17 @@
 var runner = require('./runner');
 
 /**
+ *  Creates a task collection.
+ *
+ *  @module {function} mk
+ *
+ *  @returns a Task.
+ */
+function mk(opts) {
+  return new Task(opts);
+}
+
+/**
  *  Encapsulates a collection of named task functions.
  *
  *  @function Task
@@ -84,16 +95,5 @@ function run(opts) {
 
 Task.prototype.task = task;
 Task.prototype.run = run;
-
-/**
- *  Creates a task collection.
- *
- *  @function mk
- *
- *  @returns a Task.
- */
-function mk(opts) {
-  return new Task(opts);
-}
 
 module.exports = mk;

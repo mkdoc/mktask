@@ -1,4 +1,16 @@
 /**
+ *  Get a task runner.
+ *
+ *  @module {function} run
+ *  @param {Object} opts processing options.
+ *
+ *  @returns a Runner.
+ */
+function run(opts) {
+  return new Runner(opts);
+}
+
+/**
  *  Execute task functions.
  *
  *  @constructor Runner 
@@ -55,17 +67,5 @@ function exec(id) {
 
 Runner.prototype.get = get;
 Runner.prototype.exec = exec;
-
-/**
- *  Get a task runner.
- *
- *  @function run
- *  @param {Object} opts processing options.
- *
- *  @returns a Runner.
- */
-function run(opts) {
-  return new Runner(opts);
-}
 
 module.exports = run;

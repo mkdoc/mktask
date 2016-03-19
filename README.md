@@ -18,6 +18,16 @@ For the command line interface install [mkdoc][] globally (`npm i -g mkdoc`).
 
 ## API
 
+### mk
+
+```javascript
+mk()
+```
+
+Creates a task collection.
+
+Returns a Task.
+
 ### Task
 
 ```javascript
@@ -46,15 +56,17 @@ Returns a task Runner.
 
 * `opts` processing options.
 
-### mk
+### run
 
 ```javascript
-mk()
+run(opts)
 ```
 
-Creates a task collection.
+Get a task runner.
 
-Returns a Task.
+Returns a Runner.
+
+* `opts` Object processing options.
 
 ### Runner
 
@@ -94,18 +106,6 @@ Execute a task by name identifier.
 Returns a task or undefined.
 
 * `id` Function|String task identifier.
-
-### run
-
-```javascript
-run(opts)
-```
-
-Get a task runner.
-
-Returns a Runner.
-
-* `opts` Object processing options.
 
 ## License
 
