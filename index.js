@@ -1,6 +1,5 @@
 var fs = require('fs')
   , ast = require('mkast')
-  , out = require('mkout')
   , runner = require('./runner')
   // default task collection for static access
   , tasks;
@@ -141,7 +140,7 @@ function dest(file) {
   if(typeof file === 'string') {
     output = fs.createWriteStream(file);  
   }
-  return out({output: output});
+  return output;
 }
 
 mk.dest = dest;
