@@ -72,7 +72,56 @@ function series(list, cb) {
 }
 
 /**
+ *  Execute task functions in parallel.
+ *
+ *  @function parallel
+ *  @member Runner
+ *  @param {Array} list of task functions.
+ *  @param {Number} [concurrent] number of concurrent calls.
+ *  @param {Function} cb callback function.
+ */
+function parallel(list, concurrent, cb) {
+  if(concurrent instanceof Function) {
+    cb = concurrent;
+    concurrent = 0;
+  }
+
+  var items = list.slice()
+    , scope = this.scope
+    , complete = 0;
+
+  concurrent = concurrent || items.length;
+
+  function run() {
+    for(var i = 0;i < concurrent;i++) {
+      items[i].call(scope, next);
+    }
+    items = items.slice(concurrent);
+  }
+
+  function next(err) {
+    if(err) {
+      return cb(err); 
+    }
+
+    complete++;
+
+    if(complete >= list.length) {
+      return cb(); 
+    }
+
+    if(items.length && (complete % concurrent === 0)) {
+      run(); 
+    }
+  }
+
+  run();
+}
+
+/**
  *  Execute a task by name identifier.
+ *
+ *  Dependencies are run in parallel before task execution.
  *
  *  @function exec
  *  @member Runner
@@ -88,13 +137,24 @@ function exec(id, cb) {
     throw new Error('task not found: ' + id); 
   }
 
-  this.series(task.tasks, cb);
+  function onDependencies(err) {
+    if(err) {
+      return cb(err); 
+    }
+    this.series(task.tasks, cb);
+  }
 
+  if(task.deps.length) {
+    this.parallel(task.deps, onDependencies.bind(this));
+  }else{
+    this.series(task.tasks, cb);
+  }
   return task;
 }
 
 Runner.prototype.get = get;
 Runner.prototype.exec = exec;
 Runner.prototype.series = series;
+Runner.prototype.parallel = parallel;
 
 module.exports = runner;
