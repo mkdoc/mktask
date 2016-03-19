@@ -11,7 +11,7 @@ describe('mktask:', function() {
     expect(res.deps).to.eql([]);
     expect(res.tasks).to.be.an('array')
       .to.have.length(1);
-    expect(res.name).to.eql(readme.name);
+    expect(res.id).to.eql(readme.name);
     expect(res.tasks[0].task).to.equal(readme);
     expect(res.tasks[0].name).to.equal(readme.name);
     expect(res.tasks[0].arity).to.equal(readme.length);
@@ -27,7 +27,7 @@ describe('mktask:', function() {
     expect(res.deps).to.eql([api]);
     expect(res.tasks).to.be.an('array')
       .to.have.length(1);
-    expect(res.name).to.eql(readme.name);
+    expect(res.id).to.eql(readme.name);
     expect(res.tasks[0].task).to.equal(readme);
     expect(res.tasks[0].name).to.equal(readme.name);
     expect(res.tasks[0].arity).to.equal(readme.length);
@@ -43,7 +43,7 @@ describe('mktask:', function() {
     expect(res.deps).to.eql([]);
     expect(res.tasks).to.be.an('array')
       .to.have.length(1);
-    expect(res.name).to.eql(name);
+    expect(res.id).to.eql(name);
     done();
   });
 
@@ -57,7 +57,7 @@ describe('mktask:', function() {
     expect(res.deps).to.eql([api]);
     expect(res.tasks).to.be.an('array')
       .to.have.length(1);
-    expect(res.name).to.eql(name);
+    expect(res.id).to.eql(name);
     done();
   });
 

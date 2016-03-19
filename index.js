@@ -1,4 +1,4 @@
-var tasks = [];
+var runner = require('./runner');
 
 /**
  *  Task runner entry point.
@@ -6,7 +6,7 @@ var tasks = [];
  *  @function Task
  */
 function Task() {
-
+  this.tasks = [];
 }
 
 /**
@@ -18,7 +18,7 @@ function task() {
   var args = Array.prototype.slice.call(arguments)
     , i
     , func
-    , map = {deps: [], tasks: [], name: null};
+    , map = {deps: [], tasks: [], id: null};
 
   function validate(func) {
     if(!(func instanceof Function)) {
@@ -36,10 +36,10 @@ function task() {
       validate(func);
     })
     if(typeof args[0] === 'string') {
-      map.name = args.shift(); 
+      map.id = args.shift(); 
     }
   }else if(typeof args[0] === 'string') {
-    map.name = args.shift(); 
+    map.id = args.shift(); 
   }
 
   if(!args.length) {
@@ -52,8 +52,8 @@ function task() {
       validate(func);
 
       // name is taken from first task function
-      if(!map.name) {
-        map.name = func.name; 
+      if(!map.id) {
+        map.id = func.name; 
       }
 
       map.tasks.push(
@@ -62,12 +62,19 @@ function task() {
   }
 
   gather(args);
-  tasks.push(map);
+  this.tasks.push(map);
 
   return map;
 }
 
+function run(opts) {
+  opts = opts || {};
+  opts.tasks = this.tasks;
+  return runner(opts);
+}
+
 Task.prototype.task = task;
+Task.prototype.run = run;
 
 function mk(opts) {
   return new Task(opts);
