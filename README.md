@@ -98,7 +98,7 @@ Returns a task or undefined.
 ### .exec
 
 ```javascript
-Runner.prototype.exec(id)
+Runner.prototype.exec(id, cb)
 ```
 
 Execute a task by name identifier.
@@ -106,6 +106,7 @@ Execute a task by name identifier.
 Returns a task or undefined.
 
 * `id` Function|String task identifier.
+* `cb` Function callback function.
 
 ## License
 

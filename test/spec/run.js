@@ -25,7 +25,7 @@ describe('mktask:', function() {
       , readme = function readme(){}
       , res = mk.task(readme)
       , runner = mk.run()
-      , task = runner.exec(readme);
+      , task = runner.exec(readme, function noop(){});
 
     expect(res).to.be.an('object');
     expect(task).to.be.an('object');
@@ -48,5 +48,62 @@ describe('mktask:', function() {
 
     done();
   });
+
+  it('should exec task function', function(done) {
+    var mk = mktask()
+    
+    function readme(cb) {
+      cb();
+    }
+      
+    mk.task(readme);
+
+    var runner = mk.run();
+    runner.exec(readme, done);
+  });
+
+  it('should exec multiple task functions in series', function(done) {
+    var mk = mktask()
+      , called = 0;
+
+    function api(cb) {
+      called++;
+      cb();
+    }
+    
+    function readme(cb) {
+      called++;
+      cb();
+    }
+      
+    mk.task(api, readme);
+
+    var runner = mk.run();
+    runner.exec(api, function() {
+      expect(called).to.eql(2); 
+      done();
+    });
+  });
+
+
+  it('should callback with error on task function exec', function(done) {
+    var mk = mktask()
+    
+    function readme(cb) {
+      cb(new Error('mock readme error'));
+    }
+      
+    mk.task(readme);
+
+    var runner = mk.run();
+    runner.exec(readme, function(err) {
+      function fn() {
+        throw err;
+      }
+      expect(fn).throws(Error);
+      done();
+    });
+  });
+
 
 });

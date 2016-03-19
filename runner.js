@@ -45,27 +45,56 @@ function get(id) {
 }
 
 /**
+ *  Execute task functions in series.
+ *
+ *  @function series
+ *  @member Runner
+ *  @param {Array} list of task functions.
+ *  @param {Function} cb callback function.
+ */
+function series(list, cb) {
+  var items = list.slice(0)
+    , scope = this.scope;
+
+  function next(err) {
+    if(err) {
+      return cb(err); 
+    }
+
+    var item = items.shift();
+    if(!item) {
+      return cb(); 
+    }
+
+    item.task.call(scope, next);
+  }
+  next();
+}
+
+/**
  *  Execute a task by name identifier.
  *
  *  @function exec
  *  @member Runner
  *  @param {Function|String} id task identifier.
+ *  @param {Function} cb callback function.
  *
  *  @returns a task or undefined.
  */
-function exec(id) {
-  var task = this.get(id)
-    //, deps = task.deps
-    //, tasks = task.tasks;
+function exec(id, cb) {
+  var task = this.get(id);
 
   if(!task) {
     throw new Error('task not found: ' + id); 
   }
+
+  this.series(task.tasks, cb);
 
   return task;
 }
 
 Runner.prototype.get = get;
 Runner.prototype.exec = exec;
+Runner.prototype.series = series;
 
 module.exports = runner;
