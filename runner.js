@@ -1,12 +1,12 @@
 /**
  *  Get a task runner.
  *
- *  @module {function} run
+ *  @module {function} runner
  *  @param {Object} opts processing options.
  *
  *  @returns a Runner.
  */
-function run(opts) {
+function runner(opts) {
   return new Runner(opts);
 }
 
@@ -68,4 +68,4 @@ function exec(id) {
 Runner.prototype.get = get;
 Runner.prototype.exec = exec;
 
-module.exports = run;
+module.exports = runner;

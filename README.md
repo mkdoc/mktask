@@ -18,10 +18,10 @@ For the command line interface install [mkdoc][] globally (`npm i -g mkdoc`).
 
 ## API
 
-### mk
+### task
 
 ```javascript
-mk()
+task()
 ```
 
 Creates a task collection.
@@ -56,10 +56,10 @@ Returns a task Runner.
 
 * `opts` processing options.
 
-### run
+### runner
 
 ```javascript
-run(opts)
+runner(opts)
 ```
 
 Get a task runner.

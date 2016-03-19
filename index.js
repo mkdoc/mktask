@@ -3,11 +3,11 @@ var runner = require('./runner');
 /**
  *  Creates a task collection.
  *
- *  @module {function} mk
+ *  @module {function} task
  *
  *  @returns a Task.
  */
-function mk(opts) {
+function task(opts) {
   return new Task(opts);
 }
 
@@ -26,7 +26,7 @@ function Task() {
  *  @function task
  *  @member Task
  */
-function task() {
+function add() {
   var args = Array.prototype.slice.call(arguments)
     , i
     , func
@@ -93,7 +93,7 @@ function run(opts) {
   return runner(opts);
 }
 
-Task.prototype.task = task;
+Task.prototype.task = add;
 Task.prototype.run = run;
 
-module.exports = mk;
+module.exports = task;
