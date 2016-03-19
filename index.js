@@ -1,7 +1,7 @@
 var runner = require('./runner');
 
 /**
- *  Task runner entry point.
+ *  Encapsulates a collection of named task functions.
  *
  *  @function Task
  */
@@ -76,6 +76,13 @@ function run(opts) {
 Task.prototype.task = task;
 Task.prototype.run = run;
 
+/**
+ *  Creates a task collection.
+ *
+ *  @function mk
+ *
+ *  @returns a Task.
+ */
 function mk(opts) {
   return new Task(opts);
 }

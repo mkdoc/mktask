@@ -16,6 +16,7 @@ function Runner(opts) {
  *  Get a task by name identifier.
  *
  *  @function get
+ *  @member Runner
  *  @param {Function|String} id task identifier.
  *
  *  @returns a task or undefined.
@@ -34,7 +35,8 @@ function get(id) {
 /**
  *  Execute a task by name identifier.
  *
- *  @function get
+ *  @function exec
+ *  @member Runner
  *  @param {Function|String} id task identifier.
  *
  *  @returns a task or undefined.
@@ -54,6 +56,14 @@ function exec(id) {
 Runner.prototype.get = get;
 Runner.prototype.exec = exec;
 
+/**
+ *  Get a task runner.
+ *
+ *  @function run
+ *  @param {Object} opts processing options.
+ *
+ *  @returns a Runner.
+ */
 function run(opts) {
   return new Runner(opts);
 }

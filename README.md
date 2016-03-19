@@ -24,7 +24,7 @@ For the command line interface install [mkdoc][] globally (`npm i -g mkdoc`).
 Task()
 ```
 
-Task runner entry point.
+Encapsulates a collection of named task functions.
 
 ### task
 
@@ -33,6 +33,16 @@ task()
 ```
 
 Adds task function(s) to the list of known tasks.
+
+### mk
+
+```javascript
+mk()
+```
+
+Creates a task collection.
+
+Returns a Task.
 
 ### Runner
 
@@ -49,10 +59,10 @@ Execute task functions.
 * `list` Array of tasks.
 * `scope` Object task execution scope.
 
-### get
+### .get
 
 ```javascript
-get(id)
+Runner.prototype.get(id)
 ```
 
 Get a task by name identifier.
@@ -61,10 +71,10 @@ Returns a task or undefined.
 
 * `id` Function|String task identifier.
 
-### get
+### .exec
 
 ```javascript
-get(id)
+Runner.prototype.exec(id)
 ```
 
 Execute a task by name identifier.
@@ -72,6 +82,18 @@ Execute a task by name identifier.
 Returns a task or undefined.
 
 * `id` Function|String task identifier.
+
+### run
+
+```javascript
+run(opts)
+```
+
+Get a task runner.
+
+Returns a Runner.
+
+* `opts` Object processing options.
 
 ## License
 
