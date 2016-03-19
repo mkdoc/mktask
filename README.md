@@ -171,7 +171,8 @@ Returns a task or undefined.
 Runner.prototype.each([names], cb)
 ```
 
-Execute a list of tasks to by string identifiers.
+Execute a list of tasks to by string identifiers, when `names` is
+not given all tasks are executed.
 
 * `names` Array list of task names.
 * `cb` Function callback function.

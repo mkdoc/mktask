@@ -176,7 +176,8 @@ function exec(id, cb) {
 }
 
 /**
- *  Execute a list of tasks to by string identifiers.
+ *  Execute a list of tasks to by string identifiers, when `names` is 
+ *  not given all tasks are executed.
  *
  *  @function each
  *  @member Runner
@@ -209,7 +210,6 @@ function each(names, cb) {
     }
     scope.exec(id, next);
   }
-
   next();
 }
 
