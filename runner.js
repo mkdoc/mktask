@@ -16,12 +16,11 @@ function runner(opts) {
  *  @constructor Runner 
  *  @param {Object} opts processing options.
  *
- *  @option {Array} list of tasks.
- *  @option {Object} scope task execution scope.
+ *  @option {Object} task collection of tasks.
  */
-function Runner(opts) {
-  this.tasks = opts.tasks;
-  this.scope = opts.scope || {};
+function Runner(task) {
+  this.tasks = task.tasks;
+  this.scope = task.scope || {};
 }
 
 /**
@@ -54,7 +53,8 @@ function get(id) {
  */
 function series(list, cb) {
   var items = list.slice(0)
-    , scope = this.scope;
+    , scope = this.scope
+    , stream;
 
   function next(err) {
     if(err) {
@@ -66,7 +66,19 @@ function series(list, cb) {
       return cb(); 
     }
 
-    item.task.call(scope, next);
+    var res = item.call(scope, next);
+    if(res && res.pipe instanceof Function) {
+      if(stream) {
+        stream.pipe(res); 
+      }
+      stream = res;
+      if(items.length) {
+        // invoke callback manually on returned stream
+        next();
+      }else{
+        res.once('finish', next);
+      }
+    }
   }
   next();
 }

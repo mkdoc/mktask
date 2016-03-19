@@ -12,9 +12,7 @@ describe('mktask:', function() {
     expect(res.tasks).to.be.an('array')
       .to.have.length(1);
     expect(res.id).to.eql(readme.name);
-    expect(res.tasks[0].task).to.equal(readme);
-    expect(res.tasks[0].name).to.equal(readme.name);
-    expect(res.tasks[0].arity).to.equal(readme.length);
+    expect(res.tasks[0]).to.equal(readme);
     done();
   });
 
@@ -28,9 +26,7 @@ describe('mktask:', function() {
     expect(res.tasks).to.be.an('array')
       .to.have.length(1);
     expect(res.id).to.eql(readme.name);
-    expect(res.tasks[0].task).to.equal(readme);
-    expect(res.tasks[0].name).to.equal(readme.name);
-    expect(res.tasks[0].arity).to.equal(readme.length);
+    expect(res.tasks[0]).to.equal(readme);
     done();
   });
 

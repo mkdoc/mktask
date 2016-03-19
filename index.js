@@ -1,4 +1,7 @@
-var runner = require('./runner')
+var fs = require('fs')
+  , ast = require('mkast')
+  , out = require('mkout')
+  , runner = require('./runner')
   // default task collection for static access
   , tasks;
 
@@ -24,11 +27,9 @@ function task() {
   if(!tasks) {
     tasks = mk();
   }
-
   if(!arguments.length) {
     return tasks; 
   }
-
   return tasks.task.apply(tasks, arguments);
 }
 
@@ -37,8 +38,10 @@ function task() {
  *
  *  @function Task
  */
-function Task() {
+function Task(opts) {
+  opts = opts || {};
   this.tasks = [];
+  this.scope = opts.scope;
 }
 
 /**
@@ -76,7 +79,7 @@ function add() {
   }
 
   if(!args.length) {
-    throw new TypeError('task functions expected'); 
+    throw new TypeError('task function(s) expected'); 
   }
 
   function gather(args) {
@@ -89,8 +92,7 @@ function add() {
         map.id = func.name; 
       }
 
-      map.tasks.push(
-        {task: func, name: func.name, arity: func.length});
+      map.tasks.push(func);
     }
   }
 
@@ -104,19 +106,52 @@ function add() {
  *
  *  @function run
  *  @member Task
- *  @param [opts] processing options.
  *
  *  @returns a task Runner.
  */
-function run(opts) {
-  opts = opts || {};
-  opts.tasks = this.tasks;
-  return runner(opts);
+function run() {
+  return runner(this);
 }
 
 Task.prototype.task = add;
 Task.prototype.run = run;
 
+/**
+ *  Parses a markdown string into a stream.
+ *
+ *  @static {function} src
+ *
+ *  @returns the output stream.
+ */
+mk.src = ast.src;
+
+/**
+ *  Get a file write output stream.
+ *
+ *  @static {function} dest
+ *  @param {String} file path to the output file.
+ *  
+ *  @returns an output stream.
+ */
+function dest(file) {
+  var output = process.stdout;
+  if(typeof file === 'string') {
+    output = fs.createWriteStream(file);  
+  }
+  return out({output: output});
+}
+
+mk.dest = dest;
+
 mk.task = task;
+
+/**
+ *  Clear the static collection of tasks.
+ */
+function clear(opts) {
+  tasks = mk(opts);
+}
+
+mk.clear = clear;
 
 module.exports = mk;

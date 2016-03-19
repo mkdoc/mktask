@@ -24,6 +24,7 @@
   ],
   "dependencies": {
     "mkast": "~1.1.0",
+    "mkout": "~1.0.5",
     "through3": "~1.1.5"
   },
   "devDependencies": {
