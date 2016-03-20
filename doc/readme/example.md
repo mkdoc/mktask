@@ -2,26 +2,19 @@
 
 Inline code examples from the working example in [/doc/example](/doc/example).
 
-### mkdoc.js
-
-The build file:
+The build file (mkdoc.js):
 
 <? @source {javascript} ../example/mkdoc.js ?>
 
-### source.js
-
-The input source file:
+The input source file (source.md):
 
 <? @source {markdown} ../example/source.md ?>
 
-### include.md
+Include files (include.md and links.md):
 
 <? @source {markdown} ../example/include.md ?>
-
-### links.md
-
 <? @source {markdown} ../example/links.md ?>
 
-### Result
+Result:
 
 <? @exec {markdown} cd doc/example && mk ?>
