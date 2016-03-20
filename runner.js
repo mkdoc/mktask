@@ -182,13 +182,15 @@ function exec(id, cb) {
 }
 
 /**
- *  Execute a list of tasks to by string identifiers, when `names` is 
- *  not given all tasks are executed.
+ *  Execute a list of tasks. 
+ *
+ *  When `names` is not given and no main task exists all tasks are executed; 
+ *  if a main task exists it is executed.
  *
  *  @function each
  *  @member Runner
  *
- *  @param {Array} [names] list of task names.
+ *  @param {Array} [names] list of task identifiers or task functions.
  *  @param {Function} cb callback function.
  */
 function each(names, cb) {
@@ -198,7 +200,7 @@ function each(names, cb) {
     names = null;
   }
 
-  if(!names) {
+  if(!names || !names.length) {
     // try to run the main function 
     if(this.get(MAIN)) {
       return this.exec(MAIN, cb);

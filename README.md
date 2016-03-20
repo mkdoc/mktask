@@ -73,7 +73,7 @@ Anonymous functions are not allowed and will generate an error if used.
 
 ### Main Task
 
-The `mk` program when executed with no arguments will either run all available tasks in series or if a `main` task is declared just run the main task. To declare a main task just give it the name `main`:
+The `mk` program when executed with no arguments will either run all available tasks in series or if a `main` task is declared just run the main task. To declare a main task give it the name `main`:
 
 ```javascript
 var mk = require('mktask');
@@ -324,10 +324,12 @@ Returns a task or undefined.
 Runner.prototype.each([names], cb)
 ```
 
-Execute a list of tasks to by string identifiers, when `names` is
-not given all tasks are executed.
+Execute a list of tasks.
 
-* `names` Array list of task names.
+When `names` is not given and no main task exists all tasks are executed;
+if a main task exists it is executed.
+
+* `names` Array list of task identifiers or task functions.
 * `cb` Function callback function.
 
 ## License
