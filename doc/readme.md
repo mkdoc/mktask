@@ -10,20 +10,26 @@ Runs named task functions that return streams, arrays of deferred task functions
 
 ## Usage
 
-Create a task file like this one ([source file](/mkdoc.js)):
+Create a `mkdoc.js` task file like this one ([source file](/mkdoc.js)):
 
 <? @source {javascript=s/\.\/index/mktask/gm} ../mkdoc.js ?>
 
-And build README.md using:
+Then you can build all tasks using:
 
 ```shell
 mk
 ```
 
-Or more explicitly:
+Or specific tasks:
 
 ```shell
 mk readme
+```
+
+To see a list of the tasks use:
+
+```shell
+mk --tasks
 ```
 
 <? @include {=readme} guide.md ?>

@@ -18,7 +18,7 @@ For the command line interface install [mkdoc][] globally (`npm i -g mkdoc`).
 
 ## Usage
 
-Create a task file like this one ([source file](https://github.com/mkdoc/mktask/blob/master/mkdoc.js)):
+Create a `mkdoc.js` task file like this one ([source file](https://github.com/mkdoc/mktask/blob/master/mkdoc.js)):
 
 ```javascript
 var mk = require('mktask');
@@ -38,16 +38,22 @@ function readme(cb) {
 mk.task(readme);
 ```
 
-And build README.md using:
+Then you can build all tasks using:
 
 ```shell
 mk
 ```
 
-Or more explicitly:
+Or specific tasks:
 
 ```shell
 mk readme
+```
+
+To see a list of the tasks use:
+
+```shell
+mk --tasks
 ```
 
 ## Guide
