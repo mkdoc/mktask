@@ -66,12 +66,17 @@ function series(list, cb) {
       return cb(err); 
     }
 
-    var item = items.shift();
+    var item = items.shift()
+      , res;
     if(!item) {
       return cb(); 
     }
 
-    var res = item.call(scope, next);
+    try {
+      res = item.call(scope, next);
+    }catch(e) {
+      return cb(e); 
+    }
 
     // piping between stream return values
     if(res && res.pipe instanceof Function) {
@@ -119,7 +124,11 @@ function parallel(list, concurrent, cb) {
       items = items.slice(concurrent);
     }
     for(var i = 0;i < concurrent;i++) {
-      items[i].call(scope, next);
+      try {
+        items[i].call(scope, next);
+      }catch(e) {
+        return cb(e); 
+      }
     }
   }
 

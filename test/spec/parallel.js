@@ -81,4 +81,25 @@ describe('mktask:', function() {
     }
   );
 
+  it('should callback with thrown task error (parallel)', function(done) {
+    var mk = mktask();
+    var runner = mk.run();
+
+    function readme() {
+      throw new Error('mock error');
+    }
+
+    mk.task(readme);
+
+    runner.parallel([readme], function(err) {
+      function fn() {
+        throw err;
+      }
+      expect(fn).throws(Error);
+      expect(fn).throws(/mock error/);
+      done();
+    });
+  });
+
+
 });

@@ -34,4 +34,24 @@ describe('mktask:', function() {
       done();
     });
   });
+
+  it('should callback with thrown task error (series)', function(done) {
+    var mk = mktask();
+    var runner = mk.run();
+
+    function readme() {
+      throw new Error('mock error');
+    }
+
+    mk.task(readme);
+
+    runner.each([readme], function(err) {
+      function fn() {
+        throw err;
+      }
+      expect(fn).throws(Error);
+      done();
+    });
+  });
+
 });
