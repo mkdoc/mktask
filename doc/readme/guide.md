@@ -20,6 +20,14 @@ mk.task(readme);
 
 Anonymous functions are not allowed and will generate an error if used.
 
+### Task Documentation
+
+It is considered good practice to annotate your tasks with comments that provide a name and description of the task so that it will be included in the list printed when running `mk --tasks`.
+
+```javascript
+// @task readme build the readme file.
+```
+
 ### Main Task
 
 The `mk` program when executed with no arguments will either run all available tasks in series or if a `main` task is declared just run the main task. To declare a main task give it the name `main`:
