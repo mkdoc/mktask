@@ -38,6 +38,8 @@ function readme(cb) {
 mk.task(readme);
 ```
 
+Note that you **should not install** the `mktask` dependency, it is resolved by the command line program.
+
 Then you can build all tasks using:
 
 ```shell

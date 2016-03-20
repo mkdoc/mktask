@@ -1,4 +1,4 @@
-var mk = require('./index');
+var mk = require('mktask');
 
 // @task readme build the readme file.
 function readme(cb) {

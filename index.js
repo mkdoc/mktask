@@ -1,9 +1,8 @@
 var fs = require('fs')
   , ast = require('mkast')
-  , runner = require('./runner');
-
-// default task collection for static access
-global.tasks = null;
+  , runner = require('./runner')
+  // default task collection for static access
+  , tasks = null;
 
 /**
  *  Creates a task collection.
@@ -24,9 +23,8 @@ function mk(opts) {
  *  @returns a Task.
  */
 function task() {
-  var tasks = global.tasks;
   if(!tasks) {
-    tasks = global.tasks = mk();
+    tasks = mk();
   }
   if(!arguments.length) {
     return tasks; 
@@ -158,7 +156,7 @@ mk.task = task;
  *  @private
  */
 function clear(opts) {
-  global.tasks = mk(opts);
+  tasks = mk(opts);
 }
 
 mk.clear = clear;
