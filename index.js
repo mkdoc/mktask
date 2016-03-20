@@ -144,11 +144,14 @@ function dest(file) {
 }
 
 mk.dest = dest;
-
 mk.task = task;
 
 /**
  *  Clear the static collection of tasks.
+ *
+ *  Used primarily for the test specs.
+ *
+ *  @private
  */
 function clear(opts) {
   tasks = mk(opts);

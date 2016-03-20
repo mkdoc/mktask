@@ -56,8 +56,6 @@ describe('mktask:', function() {
     
     function readme(cb) {
       called++;
-      expect(this.ast).to.be.an('object');
-      expect(this.out).to.be.a('function');
       cb();
     }
       

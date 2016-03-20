@@ -1,6 +1,4 @@
-var ast = require('mkast')
-  , out = require('mkout')
-  , MAIN = 'main';
+var MAIN = 'main';
 
 /**
  *  Get a task runner.
@@ -27,9 +25,6 @@ function Runner(task) {
 
   this.tasks = task.tasks;
   this.scope = task.scope || {};
-
-  this.scope.ast = this.scope.ast || ast;
-  this.scope.out = this.scope.out || out;
 }
 
 /**
