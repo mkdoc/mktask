@@ -252,6 +252,4 @@ Runner.prototype.series = series;
 Runner.prototype.parallel = parallel;
 Runner.prototype.each = each;
 
-//Runner.prototype.MAIN = MAIN;
-
 module.exports = runner;
