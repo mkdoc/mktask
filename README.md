@@ -218,6 +218,67 @@ Note that some command line arguments are handled by the `mk` program see the he
 
 For detailed information on the `args` object see the [argparse library][argparse].
 
+## Example
+
+Inline code examples from the working example in [/doc/example](https://github.com/mkdoc/mktask/blob/master/doc/example).
+
+### mkdoc.js
+
+The build file:
+
+```javascript
+var mk = require('../../index');
+
+// @task example build the example file.
+function example(cb) {
+  mk.doc('source.md')             // read markdown source document
+    .pipe(mk.pi())                // parse processing instructions
+    .pipe(mk.ref())               // include link references
+    .pipe(mk.out())               // convert abstract syntax tree to markdown
+    .pipe(process.stdout)         // print the result
+    .on('finish', cb);            // proceed to next task
+}
+
+mk.task(example);
+```
+
+### source.js
+
+The input source file:
+
+```markdown
+# Source
+
+Example for the mk(1) program supplied by [mkdoc][].
+
+A paragraph of markdown text followed by an include processing instruction.
+
+<? @include include.md ?>
+
+Followed by some more markdown content and the result of executing a shell command 
+in a fenced code block:
+
+<? @exec {shell} whoami ?>
+
+Finally include the link definition file.
+
+<? @include links.md ?>
+```
+
+### include.md
+
+```markdown
+## Include
+
+A file that was included from another markdown document.
+```
+
+### links.md
+
+```markdown
+[mkdoc]: https://github.com/mkdoc/mkdoc
+```
+
 ## API
 
 ### mk

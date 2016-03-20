@@ -32,7 +32,7 @@ To see a list of the tasks use:
 mk --tasks
 ```
 
-<? @include {=readme} guide.md ?>
+<? @include {=readme} guide.md example.md ?>
 
 <? @exec mkapi *.js --title=API --level=2 ?>
 <? @include {=readme} license.md links.md ?>
