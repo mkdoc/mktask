@@ -71,6 +71,22 @@ mk.task(readme);
 
 Anonymous functions are not allowed and will generate an error if used.
 
+### Main Task
+
+The `mk` program when executed with no arguments will either run all available tasks in series or if a `main` task is declared just run the main task. To declare a main task just give it the name `main`:
+
+```javascript
+var mk = require('mktask');
+
+// @task main build all documentation.
+function main(cb) {
+  // implement task logic
+  cb();
+}
+
+mk.task(main);
+```
+
 ### Deferred Tasks
 
 Typically task functions will invoke the callback function when done but they may also return an array of task functions which is useful when a task wishes to defer to a series of other tasks:
