@@ -260,13 +260,15 @@ Finally include the link definition file.
 <? @include links.md ?>
 ```
 
-Include files [include.md](https://github.com/mkdoc/mktask/blob/master/doc/example/include.md) and [links.md](https://github.com/mkdoc/mktask/blob/master/doc/example/links.md):
+Include file [include.md](https://github.com/mkdoc/mktask/blob/master/doc/example/include.md):
 
 ```markdown
 ## Include
 
 A file that was included from another markdown document.
 ```
+
+Include file [links.md](https://github.com/mkdoc/mktask/blob/master/doc/example/links.md):
 
 ```markdown
 [mkdoc]: https://github.com/mkdoc/mkdoc

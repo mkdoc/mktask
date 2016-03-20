@@ -10,9 +10,12 @@ The input source file [source.md](/doc/example/source.md):
 
 <? @source {markdown} ../example/source.md ?>
 
-Include files [include.md](/doc/example/include.md) and [links.md](/doc/example/links.md):
+Include file [include.md](/doc/example/include.md):
 
 <? @source {markdown} ../example/include.md ?>
+
+Include file [links.md](/doc/example/links.md):
+
 <? @source {markdown} ../example/links.md ?>
 
 Result:
