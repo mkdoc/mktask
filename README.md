@@ -16,6 +16,39 @@ npm i mktask --save
 
 For the command line interface install [mkdoc][] globally (`npm i -g mkdoc`).
 
+## Usage
+
+Create a task file like this one ([source file](https://github.com/mkdoc/mktask/blob/master/mkdoc.js)):
+
+```javascript
+var mk = require('mktask');
+
+// @task readme build the readme file.
+function readme() {
+  mk.doc('doc/readme.md')
+    .pipe(mk.pi())
+    .pipe(mk.msg())
+    .pipe(mk.ref())
+    .pipe(mk.abs())
+    .pipe(mk.out())
+    .pipe(mk.dest('README.md'));
+}
+
+mk.task(readme);
+```
+
+And build README.md using:
+
+```shell
+mk
+```
+
+Or more explicitly:
+
+```shell
+mk readme
+```
+
 ## Guide
 
 This guides assumes you are using the `mk` program to run tasks, install it with `npm i -g mkdoc`.
