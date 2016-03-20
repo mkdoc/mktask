@@ -255,8 +255,7 @@ A paragraph of markdown text followed by an include processing instruction.
 
 <? @include include.md ?>
 
-Followed by some more markdown content and the result of executing a shell command 
-in a fenced code block:
+Followed by some more markdown content and the result of executing a shell command:
 
 <? @exec whoami ?>
 
@@ -292,8 +291,7 @@ A paragraph of markdown text followed by an include processing instruction.
 
 A file that was included from another markdown document.
 
-Followed by some more markdown content and the result of executing a shell command
-in a fenced code block:
+Followed by some more markdown content and the result of executing a shell command:
 
 muji
 
