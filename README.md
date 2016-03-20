@@ -257,7 +257,7 @@ A paragraph of markdown text followed by an include processing instruction.
 
 Followed by some more markdown content and the result of executing a shell command:
 
-<? @exec whoami ?>
+<? @exec uname ?>
 
 Finally include the link definition file.
 
@@ -293,7 +293,7 @@ A file that was included from another markdown document.
 
 Followed by some more markdown content and the result of executing a shell command:
 
-muji
+Linux
 
 Finally include the link definition file.
 
