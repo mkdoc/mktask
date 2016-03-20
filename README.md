@@ -258,7 +258,7 @@ A paragraph of markdown text followed by an include processing instruction.
 Followed by some more markdown content and the result of executing a shell command 
 in a fenced code block:
 
-<? @exec {shell} whoami ?>
+<? @exec whoami ?>
 
 Finally include the link definition file.
 
@@ -295,9 +295,7 @@ A file that was included from another markdown document.
 Followed by some more markdown content and the result of executing a shell command
 in a fenced code block:
 
-```shell
 muji
-```
 
 Finally include the link definition file.
 
