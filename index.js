@@ -87,7 +87,7 @@ function add() {
       validate(func);
 
       // name is taken from first task function
-      if(!map.id) {
+      if(!map.id && i === args.length - 1) {
         map.id = func.name; 
       }
 

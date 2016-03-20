@@ -62,7 +62,7 @@ describe('mktask:', function() {
     mk.task(api, readme);
 
     var runner = mk.run();
-    runner.exec(api, function() {
+    runner.exec(readme, function() {
       expect(called).to.eql(2); 
       done();
     });

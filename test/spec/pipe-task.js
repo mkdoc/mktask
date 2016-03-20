@@ -13,7 +13,7 @@ describe('mktask:', function() {
     expect(mk).to.be.an('object');
     expect(mk.tasks).to.be.an('array')
       .to.have.length(1);
-    runner.exec('api', function() {
+    runner.exec('out', function() {
       done();
     });
   });
