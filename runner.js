@@ -214,6 +214,9 @@ function each(names, cb) {
     if(id instanceof Function) {
       id = id.name; 
     }
+
+    // @todo: validate id exists in task list
+
     if(!id) {
       return cb(); 
     }

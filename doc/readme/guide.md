@@ -9,6 +9,7 @@ Tasks are *named* functions that are passed to the `task` function:
 ```javascript
 var mk = require('mktask');
 
+// @task readme build the readme file.
 function readme(cb) {
   // implement task logic
   cb();
@@ -26,11 +27,13 @@ Typically task functions will invoke the callback function when done but they ma
 ```javascript
 var mk = require('mktask');
 
+// @task api build the api docs.
 function api(cb) {
   // implement api task logic
   cb();
 }
 
+// @task readme build the readme file.
 function readme(cb) {
   // implement readme task logic
   cb();
@@ -67,3 +70,31 @@ mk.task(in, out);
 ```
 
 When a task returns a stream it is piped to the next task function in the pipeline and the callback function is added as a listener for the `finish` event on the last stream in the pipeline.
+
+### Task Dependencies
+
+Task functions may declare an array of functions to call before the task function(s), dependencies are executed in parallel but they must all complete before the tasks are executed:
+
+```javascript
+var mk = require('mktask');
+
+// @task api build the api docs.
+function api(
+  // implement api task logic
+  cb();
+}
+
+// @task example build the example file.
+function example(
+  // implement example task logic
+  cb();
+}
+
+// @task readme build the readme file.
+function readme(cb) {
+  // implement readme task logic
+  cb();
+}
+
+mk.task([api, example], readme);
+```
