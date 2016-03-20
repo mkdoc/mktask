@@ -6,7 +6,7 @@
 
 > Run build tasks
 
-Runs named task functions that return streams.
+Runs named task functions that return streams, arrays of deferred task functions or invoke the callback function.
 
 ## Install
 
@@ -57,6 +57,7 @@ function readme(cb) {
   cb();
 }
 
+// @task main build the api and readme docs.
 function main() {
   return [api, readme];
 }
@@ -65,6 +66,8 @@ mk.task(api);
 mk.task(readme);
 mk.task(main);
 ```
+
+Note that when deferring to other task functions they must have been registered by calling `task()`.
 
 ### Stream Tasks
 

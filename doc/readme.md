@@ -4,7 +4,7 @@
 
 > Run build tasks
 
-Runs named task functions that return streams.
+Runs named task functions that return streams, arrays of deferred task functions or invoke the callback function.
 
 <? @include {=readme} install.md guide.md ?>
 
