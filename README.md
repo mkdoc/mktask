@@ -279,6 +279,32 @@ A file that was included from another markdown document.
 [mkdoc]: https://github.com/mkdoc/mkdoc
 ```
 
+### Result
+
+```markdown
+# Source
+
+Example for the mk(1) program supplied by [mkdoc][].
+
+A paragraph of markdown text followed by an include processing instruction.
+
+## Include
+
+A file that was included from another markdown document.
+
+Followed by some more markdown content and the result of executing a shell command
+in a fenced code block:
+
+```shell
+muji
+```
+
+Finally include the link definition file.
+
+[mkdoc]: https://github.com/mkdoc/mkdoc
+
+```
+
 ## API
 
 ### mk

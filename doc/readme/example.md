@@ -21,3 +21,7 @@ The input source file:
 ### links.md
 
 <? @source {markdown} ../example/links.md ?>
+
+### Result
+
+<? @exec {markdown} cd doc/example && mk ?>
