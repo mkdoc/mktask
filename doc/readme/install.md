@@ -1,7 +1,7 @@
 ## Install
 
-```
-npm i mktask --save
-```
+Install the [mkdoc][] tools for the `mk` program:
 
-For the command line interface install [mkdoc][] globally (`npm i -g mkdoc`).
+```
+npm i -g mkdoc
+```
