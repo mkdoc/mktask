@@ -92,7 +92,9 @@ When a task returns a stream it is piped to the next task function in the pipeli
 
 ### Task Dependencies
 
-Task functions may declare an array of functions to call before the task function(s), dependencies are executed in parallel but they must all complete before the tasks are executed:
+Task functions may declare an array of functions to call before the task function(s).
+
+Dependencies are executed in parallel but they must all complete before the tasks are executed:
 
 ```javascript
 var mk = require('mktask');

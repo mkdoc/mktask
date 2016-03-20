@@ -24,14 +24,15 @@ Create a task file like this one ([source file](https://github.com/mkdoc/mktask/
 var mk = require('mktask');
 
 // @task readme build the readme file.
-function readme() {
+function readme(cb) {
   mk.doc('doc/readme.md')         // read markdown source document
     .pipe(mk.pi())                // parse processing instructions
     .pipe(mk.msg())               // append generator message
     .pipe(mk.ref())               // include link references
     .pipe(mk.abs())               // make links absolute
     .pipe(mk.out())               // convert abstract syntax tree to markdown
-    .pipe(mk.dest('README.md'));  // write the result to a file
+    .pipe(mk.dest('README.md'))   // write the result to a file
+    .on('finish', cb);            // proceed to next task
 }
 
 mk.task(readme);
@@ -143,7 +144,9 @@ When a task returns a stream it is piped to the next task function in the pipeli
 
 ### Task Dependencies
 
-Task functions may declare an array of functions to call before the task function(s), dependencies are executed in parallel but they must all complete before the tasks are executed:
+Task functions may declare an array of functions to call before the task function(s).
+
+Dependencies are executed in parallel but they must all complete before the tasks are executed:
 
 ```javascript
 var mk = require('mktask');

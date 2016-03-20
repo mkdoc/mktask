@@ -219,6 +219,12 @@ function each(names, cb) {
       return cb(err); 
     }
     var id = names.shift(); 
+
+    // all done
+    if(id === undefined) {
+      return cb(); 
+    }
+
     if(id instanceof Function) {
       id = id.name; 
     }
