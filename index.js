@@ -57,11 +57,11 @@ function add() {
 
   function validate(func) {
     if(!(func instanceof Function)) {
-      throw new TypeError('task expects function arguments');
+      throw new TypeError('task() expects function arguments');
     }
 
     if(!func.name) {
-      throw new TypeError('task expects named functions');
+      throw new TypeError('task() expects named functions');
     }
   }
 

@@ -215,11 +215,14 @@ function each(names, cb) {
       id = id.name; 
     }
 
-    // @todo: validate id exists in task list
-
     if(!id) {
-      return cb(); 
+      return cb(new Error('each() id is invalid: ' + id)); 
     }
+
+    if(!scope.get(id)) {
+      return cb(new Error('each() function ' + id + ' does not exist')); 
+    }
+
     scope.exec(id, next);
   }
   next();

@@ -39,6 +39,7 @@ function readme(cb) {
   cb();
 }
 
+// @task main build the api and readme docs.
 function main() {
   return [api, readme];
 }
@@ -47,6 +48,8 @@ mk.task(api);
 mk.task(readme);
 mk.task(main);
 ```
+
+Note that when deferring to other task functions they must have been registered by calling `task()`.
 
 ### Stream Tasks
 
