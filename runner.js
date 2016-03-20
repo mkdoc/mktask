@@ -192,12 +192,18 @@ function exec(id, cb) {
  *  @param {Function} cb callback function.
  */
 function each(names, cb) {
+
   if(names instanceof Function) {
     cb = names;
     names = null;
   }
 
   if(!names) {
+    // try to run the main function 
+    if(this.get(MAIN)) {
+      return this.exec(MAIN, cb);
+    }
+
     names = this.tasks.map(function(task) {
       return task.id;
     }) 
@@ -234,6 +240,6 @@ Runner.prototype.series = series;
 Runner.prototype.parallel = parallel;
 Runner.prototype.each = each;
 
-Runner.prototype.MAIN = MAIN;
+//Runner.prototype.MAIN = MAIN;
 
 module.exports = runner;
