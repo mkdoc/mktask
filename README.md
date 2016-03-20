@@ -108,7 +108,7 @@ mk.task(function api(cb){cb()}, function readme(cb){cb()});
 
 ### Main Task
 
-The `mk` program when executed with no arguments will either run all available tasks in series or if a `main` task is declared just run the main task. To declare a main task give it the name `main`:
+The `mk` program when executed with no arguments will either run all available tasks in series or a `main` task if declared. To declare a main task give it the name `main`:
 
 ```javascript
 var mk = require('mktask');
