@@ -222,7 +222,7 @@ For detailed information on the `args` object see the [argparse library][argpars
 
 Inline code examples from the working example in [/doc/example](https://github.com/mkdoc/mktask/blob/master/doc/example).
 
-The build file (mkdoc.js):
+The build file [mkdoc.js](https://github.com/mkdoc/mktask/blob/master/doc/example/mkdoc.js):
 
 ```javascript
 var mk = require('../../index');
@@ -240,7 +240,7 @@ function example(cb) {
 mk.task(example);
 ```
 
-The input source file (source.md):
+The input source file [source.md](https://github.com/mkdoc/mktask/blob/master/doc/example/source.md):
 
 ```markdown
 # Source
@@ -260,7 +260,7 @@ Finally include the link definition file.
 <? @include links.md ?>
 ```
 
-Include files (include.md and links.md):
+Include files [include.md](https://github.com/mkdoc/mktask/blob/master/doc/example/include.md) and [links.md](https://github.com/mkdoc/mktask/blob/master/doc/example/links.md):
 
 ```markdown
 ## Include
