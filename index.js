@@ -26,7 +26,7 @@ function mk(opts) {
 function task() {
   var tasks = global.tasks;
   if(!tasks) {
-    tasks = mk();
+    tasks = global.tasks = mk();
   }
   if(!arguments.length) {
     return tasks; 
