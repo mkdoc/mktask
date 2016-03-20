@@ -58,7 +58,9 @@ function add() {
     , map = {deps: [], tasks: [], id: null};
 
   function validate(func) {
-    if(!(func instanceof Function)) {
+    // NOTE: must not use instanceof here as task files
+    // NOTE: are run as scripts in a vm context
+    if(typeof func !== 'function') {
       throw new TypeError('task() expects function arguments');
     }
 
