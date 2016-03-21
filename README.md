@@ -299,6 +299,21 @@ Finally include the link definition file.
 
 ```
 
+## Help
+
+```
+mk [task...]
+
+Task runner.
+
+  -f, --file=[FILE...]  Load specific task files
+  --tasks               Print task comments
+  -h, --help            Display this help and exit
+  --version             Print the version and exit
+
+Report bugs to https://github.com/mkdoc/mktask/issues
+```
+
 ## API
 
 ### mk
