@@ -8,6 +8,10 @@ Runs named task functions that return streams, arrays of deferred task functions
 
 <? @include {=readme} install.md ?>
 
+***
+<!-- @toc -->
+***
+
 ## Usage
 
 Create a `mkdoc.js` task file like this one ([source file](/mkdoc.js)):

@@ -7,6 +7,7 @@ function readme(cb) {
     .pipe(mk.ref())               // include link references
     .pipe(mk.abs())               // make links absolute
     .pipe(mk.msg())               // append generator message
+    .pipe(mk.toc({depth: 2}))     // inject table of contents list
     .pipe(mk.out())               // convert abstract syntax tree to markdown
     .pipe(mk.dest('README.md'))   // write the result to a file
     .on('finish', cb);            // proceed to next task
