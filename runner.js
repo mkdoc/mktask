@@ -37,7 +37,7 @@ function Runner(task) {
  *  @returns a task or undefined.
  */
 function get(id) {
-  if(id instanceof Function) {
+  if(typeof id === 'function') {
     id = id.name; 
   }
   for(var i = 0;i < this.tasks.length;i++) {
@@ -229,7 +229,7 @@ function each(names, cb) {
       return cb(); 
     }
 
-    if(id instanceof Function) {
+    if(typeof id === 'function') {
       id = id.name; 
     }
 
