@@ -28,7 +28,7 @@ npm i -g mkdoc
   - [Deferred Tasks](#deferred-tasks)
   - [Stream Tasks](#stream-tasks)
   - [Task Dependencies](#task-dependencies)
-  - [CLI Arguments](#cli-arguments)
+  - [Task Arguments](#task-arguments)
 - [Example](#example)
 - [Help](#help)
 - [API](#api)
@@ -244,7 +244,7 @@ function readme(cb) {
 mk.task([api, example], readme);
 ```
 
-### CLI Arguments
+### Task Arguments
 
 Task functions are automatically exposed the parsed arguments object via `this.args`.
 
@@ -338,16 +338,17 @@ Finally include the link definition file.
 ## Help
 
 ```
-mk [task...]
+Usage: mk [options] [task...]
 
-Task runner.
+  Task runner.
 
+Options
   -f, --file=[FILE...]    Load specific task files
   --tasks                 Print task list
   -h, --help              Display help and exit
   --version               Print the version and exit
 
-Report bugs to https://github.com/mkdoc/mktask/issues
+mktask@1.3.8
 ```
 
 ## API
@@ -519,7 +520,7 @@ MIT
 
 ---
 
-Created by [mkdoc](https://github.com/mkdoc/mkdoc) on April 2, 2016
+Created by [mkdoc](https://github.com/mkdoc/mkdoc) on April 17, 2016
 
 [mkdoc]: https://github.com/mkdoc/mkdoc
 [mkparse]: https://github.com/mkdoc/mkparse
