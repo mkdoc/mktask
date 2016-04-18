@@ -1,23 +1,26 @@
 ## Example
 
-Inline code examples from the working example in [/doc/example](/doc/example).
+Build all tasks (or a main task when defined):
 
-The build file [mkdoc.js](/doc/example/mkdoc.js):
+```shell
+mk
+```
 
-<? @source {javascript} ../example/mkdoc.js ?>
+Build specific tasks:
 
-The input source file [source.md](/doc/example/source.md):
+```shell
+mk api readme
+```
 
-<? @source {markdown} ../example/source.md ?>
+Use a specific build file:
 
-Include file [include.md](/doc/example/include.md):
+```shell
+mk -f ~/mkdoc.js readme
+```
 
-<? @source {markdown} ../example/include.md ?>
+To see a list of tasks use:
 
-Include file [links.md](/doc/example/links.md):
+```shell
+mk --tasks
+```
 
-<? @source {markdown} ../example/links.md ?>
-
-Result:
-
-<? @exec {markdown} cd doc/example && mk ?>

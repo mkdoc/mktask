@@ -20,6 +20,7 @@ npm i -g mkdoc
 
 - [Install](#install)
 - [Usage](#usage)
+- [Example](#example)
 - [Guide](#guide)
   - [Creating Tasks](#creating-tasks)
   - [Task Documentation](#task-documentation)
@@ -29,7 +30,7 @@ npm i -g mkdoc
   - [Stream Tasks](#stream-tasks)
   - [Task Dependencies](#task-dependencies)
   - [Task Arguments](#task-arguments)
-- [Example](#example)
+- [Sample](#sample)
 - [Help](#help)
 - [API](#api)
   - [mk](#mk)
@@ -76,19 +77,27 @@ mk.task(readme);
 
 Note that you **should not install** the `mktask` dependency, it is resolved by the command line program.
 
-Then you can build all tasks using:
+## Example
+
+Build all tasks (or a main task when defined):
 
 ```shell
 mk
 ```
 
-Or specific tasks:
+Build specific tasks:
 
 ```shell
-mk readme
+mk api readme
 ```
 
-To see a list of the tasks use:
+Use a specific build file:
+
+```shell
+mk -f ~/mkdoc.js readme
+```
+
+To see a list of tasks use:
 
 ```shell
 mk --tasks
@@ -254,7 +263,7 @@ Note that some command line arguments are handled by the `mk` program you should
 
 For detailed information on the `args` object see the [argparse library][argparse].
 
-## Example
+## Sample
 
 Inline code examples from the working example in [/doc/example](https://github.com/mkdoc/mktask/blob/master/doc/example).
 
@@ -346,7 +355,7 @@ Options
   -h, --help              Display help and exit
   --version               Print the version and exit
 
-mktask@1.3.8
+mktask@1.3.9
 ```
 
 ## API

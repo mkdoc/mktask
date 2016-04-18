@@ -20,25 +20,7 @@ Create a `mkdoc.js` task file like this one ([source file](/mkdoc.js)):
 
 Note that you **should not install** the `mktask` dependency, it is resolved by the command line program.
 
-Then you can build all tasks using:
-
-```shell
-mk
-```
-
-Or specific tasks:
-
-```shell
-mk readme
-```
-
-To see a list of the tasks use:
-
-```shell
-mk --tasks
-```
-
-<? @include {=readme} guide.md example.md help.md ?>
+<? @include {=readme} example.md guide.md sample.md help.md ?>
 
 <? @exec mkapi *.js --title=API --level=2 ?>
 <? @include {=readme} license.md links.md ?>
