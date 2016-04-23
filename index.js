@@ -111,7 +111,14 @@ function add() {
  *  @returns a task Runner.
  */
 function run() {
-  return runner(this);
+  var res = runner(this);
+
+  // run from array of tasks passed to this function
+  if(arguments.length) {
+    res.each.apply(res, arguments);
+  }
+
+  return res;
 }
 
 Task.prototype.task = add;
@@ -160,5 +167,10 @@ function clear(opts) {
 }
 
 mk.clear = clear;
+mk.run = function() {
+  if(tasks) {
+    return tasks.run.apply(tasks, arguments);
+  }
+}
 
 module.exports = mk;
