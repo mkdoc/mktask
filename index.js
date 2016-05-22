@@ -103,6 +103,23 @@ function add() {
 }
 
 /**
+ *  Get a task map by function reference.
+ *
+ *  @function get
+ *  @member Task
+ *
+ *  @returns a task map if found.
+ */
+function get(fn) {
+  var i;
+  for(i = 0;i < this.tasks.length;i++) {
+    if(~this.tasks[i].tasks.indexOf(fn)) {
+      return this.tasks[i];
+    } 
+  }
+}
+
+/**
  *  Gets a task runner for this collection of tasks.
  *
  *  @function run
@@ -122,6 +139,7 @@ function run() {
 }
 
 Task.prototype.task = add;
+Task.prototype.get = get;
 Task.prototype.run = run;
 
 /**

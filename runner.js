@@ -152,6 +152,38 @@ function parallel(list, concurrent, cb) {
 }
 
 /**
+ *  Resolves dependencies for a task.
+ *
+ *  Searches for dependencies that are tasks and injects any dependencies for 
+ *  located tasks.
+ *
+ *  @function resolve
+ *  @member Runner
+ *  @param {Function} cb callback function.
+ *
+ *  @returns an array of task dependencies.
+ */
+function resolve(deps) {
+  var i
+    , j
+    , task
+    , out = deps.slice();
+  for(i = 0;i < deps.length;i++) {
+    task = this.task.get(deps[i]);
+    // dependency is a known task that has it's own dependencies
+    if(task && task.deps && task.deps.length) {
+      for(j = 0;j < task.deps.length;j++) {
+        // do not duplicate if the dependency already exists
+        if(!~out.indexOf(task.deps[j])) {
+          out.push(task.deps[j]); 
+        } 
+      }
+    }
+  }
+  return out;
+}
+
+/**
  *  Execute a task by name identifier.
  *
  *  Dependencies are run in parallel before task execution.
@@ -178,7 +210,7 @@ function exec(id, cb) {
   }
 
   if(task.deps.length) {
-    this.parallel(task.deps, onDependencies.bind(this));
+    this.parallel(this.resolve(task.deps), onDependencies.bind(this));
   }else{
     this.series(task.tasks, cb);
   }
@@ -247,6 +279,7 @@ function each(names, cb) {
 }
 
 Runner.prototype.get = get;
+Runner.prototype.resolve = resolve;
 Runner.prototype.exec = exec;
 Runner.prototype.series = series;
 Runner.prototype.parallel = parallel;
