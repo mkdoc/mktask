@@ -175,7 +175,11 @@ function resolve(deps) {
       for(j = 0;j < task.deps.length;j++) {
         // do not duplicate if the dependency already exists
         if(!~out.indexOf(task.deps[j])) {
-          out.push(task.deps[j]); 
+          if(!i) {
+            out.unshift(task.deps[j]); 
+          }else{
+            out.splice(i, 0, task.deps[j])  
+          }
         } 
       }
     }
