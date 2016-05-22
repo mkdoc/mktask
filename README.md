@@ -37,15 +37,17 @@ npm i -g mkdoc
   - [#task](#task)
   - [Task](#task-1)
   - [.task](#task-2)
+  - [.get](#get)
   - [.run](#run)
   - [#src](#src)
   - [#dest](#dest)
   - [runner](#runner)
   - [Runner](#runner-1)
     - [Options](#options)
-  - [.get](#get)
+  - [.get](#get-1)
   - [.series](#series)
   - [.parallel](#parallel)
+  - [.resolve](#resolve)
   - [.exec](#exec)
   - [.each](#each)
 - [License](#license)
@@ -345,7 +347,7 @@ Finally include the link definition file.
 ## Help
 
 ```
-Usage: mk [options] [task...]
+Usage: mk [-h] [--tasks] [--help] [--version] [--file=<file...>] [task...]
 
   Task runner.
 
@@ -355,7 +357,7 @@ Options
   -h, --help              Display help and exit
   --version               Print the version and exit
 
-mktask@1.3.9
+mktask@1.3.10
 ```
 
 ## API
@@ -395,6 +397,16 @@ Task.prototype.task()
 ```
 
 Adds task function(s) to the list of known tasks.
+
+### .get
+
+```javascript
+Task.prototype.get()
+```
+
+Get a task map by function reference.
+
+Returns a task map if found.
 
 ### .run
 
@@ -492,6 +504,21 @@ Execute task functions in parallel.
 * `concurrent` Number number of concurrent calls.
 * `cb` Function callback function.
 
+### .resolve
+
+```javascript
+Runner.prototype.resolve(cb)
+```
+
+Resolves dependencies for a task.
+
+Searches for dependencies that are tasks and injects any dependencies for
+located tasks.
+
+Returns an array of task dependencies.
+
+* `cb` Function callback function.
+
 ### .exec
 
 ```javascript
@@ -527,7 +554,7 @@ MIT
 
 ---
 
-Created by [mkdoc](https://github.com/mkdoc/mkdoc) on April 18, 2016
+Created by [mkdoc](https://github.com/mkdoc/mkdoc) on May 22, 2016
 
 [mkdoc]: https://github.com/mkdoc/mkdoc
 [mkparse]: https://github.com/mkdoc/mkparse
